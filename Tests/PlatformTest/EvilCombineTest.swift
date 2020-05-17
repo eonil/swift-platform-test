@@ -22,8 +22,7 @@ private func wait1<P:Publisher>(_ p:P, for d: TimeInterval, until check:@escapin
     noop(a)
     fin.wait()
     /// I don't know why, but without this, program is likely crash on many quick repetition.
-    /// See `WaitTest.swift` to reproduce the crash without this sync.
-    /// - It has to be `recvq`. Other queues doesn't work.
-    /// - It seems this somehow prolongs the lifetime of pipeline and that avoided the crash.
+    /// Just run above test case. It crashed within 1000 iterations on my machine. (macOS 10.15.4, MacBook Pro (Retina, 13-inch, Late 2013))
+    /// Uncomment following line to give a quick fix.
 //    Thread.sleep(forTimeInterval: 0.001)
 }
