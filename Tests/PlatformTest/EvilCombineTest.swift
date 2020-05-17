@@ -15,7 +15,6 @@ final class EvilCombineTest: XCTestCase {
     }
 }
 
-/// Returns all collected outputs until `check` returns `true`.
 private func wait1<P:Publisher>(_ p:P, for d: TimeInterval, until check:@escaping(P.Output) -> Bool) {
     let fin = DispatchSemaphore(value: 0)
     let a = p.sink(receiveCompletion: { _ in },
