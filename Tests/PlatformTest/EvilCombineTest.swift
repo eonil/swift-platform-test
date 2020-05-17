@@ -10,12 +10,12 @@ final class EvilCombineTest: XCTestCase {
                 a.send(111)
                 a.send(completion: .finished)
             }
-            wait1(a, for: 3, until: { m in m == 222 })
+            wait1(a)
         }
     }
 }
 
-private func wait1<P:Publisher>(_ p:P, for d: TimeInterval, until check:@escaping(P.Output) -> Bool) {
+private func wait1<P:Publisher>(_ p:P) {
     let fin = DispatchSemaphore(value: 0)
     let a = p.sink(receiveCompletion: { _ in },
     receiveValue: { _ in fin.signal() })
