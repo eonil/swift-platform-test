@@ -21,8 +21,8 @@ private func wait1<P:Publisher>(_ p:P) {
     receiveValue: { _ in fin.signal() })
     noop(a)
     fin.wait()
-    /// I don't know why, but without this, program is likely crash on many quick repetition.
     /// Just run above test case. It crashed within 1000 iterations on my machine. (macOS 10.15.4, MacBook Pro (Retina, 13-inch, Late 2013))
     /// Uncomment following line to give a quick fix.
+    /// I don't know why, but without this, program is likely crash on many quick repetition. 
 //    Thread.sleep(forTimeInterval: 0.001)
 }
