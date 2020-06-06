@@ -11,6 +11,7 @@ final class EvilCombineTest: XCTestCase {
                 a.send(completion: .finished)
             }
             wait1(a)
+            withExtendedLifetime(a, noop)
         }
     }
 }
@@ -19,10 +20,10 @@ private func wait1<P:Publisher>(_ p:P) {
     let fin = DispatchSemaphore(value: 0)
     let a = p.sink(receiveCompletion: { _ in },
     receiveValue: { _ in fin.signal() })
-    noop(a)
     fin.wait()
     /// Just run above test case. It crashed within 1000 iterations on my machine. (macOS 10.15.4, MacBook Pro (Retina, 13-inch, Late 2013))
     /// Uncomment following line to give a quick fix.
     /// I don't know why, but without this, program is likely crash on many quick repetition. 
 //    Thread.sleep(forTimeInterval: 0.001)
+    withExtendedLifetime((a,fin), noop)
 }
