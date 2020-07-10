@@ -1,6 +1,7 @@
 import XCTest
 import Combine
 
+@available(macOS 10.15, *)
 final class EvilCombineTest: XCTestCase {
     func test1() {
         for i in 0..<1_000_000 {
@@ -16,6 +17,7 @@ final class EvilCombineTest: XCTestCase {
     }
 }
 
+@available(macOS 10.15, *)
 private func wait1<P:Publisher>(_ p:P) {
     let fin = DispatchSemaphore(value: 0)
     let a = p.sink(receiveCompletion: { _ in },

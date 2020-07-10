@@ -5,9 +5,6 @@ import PackageDescription
 
 let package = Package(
     name: "PlatformTest",
-    platforms: [
-        .macOS(.v10_15),
-    ],
     targets: [
         .testTarget(name: "PlatformTest"),
     ]
